@@ -1,7 +1,6 @@
 import pandas as pd
-import glob
 from pathlib import Path
-import os
+import sys
 
 
 def load_dta(dta_path):
@@ -24,6 +23,7 @@ def write_to_csv(df, file_name):
     df.to_csv(file_name, sep='\t', encoding='utf-8')
     
 if __name__ == "__main__":
-    data_frames = [load_dta(dta_file) for dta_file in generate_dta_path('person')]
-    for df in data_frames:
-        print(df.shape)
+    if sys.argc == 2：
+        data_frames = [load_dta(dta_file) for dta_file in generate_dta_path(sys.argv[1])]
+        for df in data_frames:
+            print(df.shape)
